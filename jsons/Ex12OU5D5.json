@@ -1,0 +1,40 @@
+{
+  "data_config": {
+        "_comment": "SODE: Ex12OU5D5",
+        "eqn_name": "Ex12OU5D5",
+        "N_traj": 10000,
+        "data_type": "neighbor_space",
+        "n_sample": [1000,10000],
+        "N_train": [10000,1000],
+        "N_test": 20,
+        "L_test": 500,
+        "L_train": 100,
+        "dt": 0.01,
+        "beta_range_1": [0.5,5.0],
+        "beta_range_2": [[-4,4],[-4,4],[-4,4],[-4,4],[-4,4]]
+  },
+  "network_config": {
+      "epochs": [500,500],
+      "lr": [1e-3,1e-4],
+      "max_moment": 6,
+      "moment_weights": [1.0,1.0,2.0,3.0,8.0,15.0],
+      "beta_kde_1d": [0.1,0.1],
+      "beta_kde_nd": [1.0,1.0],
+      "beta_moment": [0.005,0.005],
+      "beta_cov": [0.01,0.01],
+      "beta_mmd": [0.0,0.0],
+      "mmd_sigma": 0.1,
+      "mmd_basis": 256,
+      "encoder_dim": 20,
+      "decoder_dim": 20,
+      "latent_dim": 1,
+      "n_x": 5,
+      "batch_size": 20,
+      "kde_method": "combine",
+      "kde_range": [-3.0,3.0],
+      "kde_num": 100,
+      "RNN": 1,
+      "val_split": 0.1,
+      "model_dir": "models/" 
+  }
+}
