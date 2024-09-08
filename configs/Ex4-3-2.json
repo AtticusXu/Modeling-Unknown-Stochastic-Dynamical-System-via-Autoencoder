@@ -1,0 +1,41 @@
+{
+  "data_config": {
+        "_comment": "Noise with Lognormal Distribution",
+        "eqn_name": "4-3-2",
+        "N_traj": 10000,
+        "data_type": "range",
+        "n_sample": [1000,10000],
+        "N_train": [10000,1000],
+        "N_test": 20,
+        "L_test": 500,
+        "L_train": 100,
+        "dt": 0.01,
+        "train_IC_range": [0.1,2.0],
+        "plot_range": [0.2,1.7],
+        "test_IC": 1.5,
+        "plot_x0": 0.4
+  },
+  "network_config": {
+      "epochs": [1000,500],
+      "lr": [1e-3,1e-4],
+      "max_moment": 6,
+      "moment_weights": [1.0,1.0,2.0,3.0,8.0,15.0],
+      "beta_kde": [1.0,1.0],
+      "beta_moment": [0.01,0.01],
+      "beta_cov": [0.0,0.0],
+      "beta_mmd": [0.0,0.0],
+      "mmd_sigma": 0.01,
+      "mmd_basis": 64,
+      "encoder_dim": 20,
+      "decoder_dim": 20,
+      "latent_dim": 1,
+      "n_x": 1,
+      "batch_size": 20,
+      "kde_method": "grid",
+      "kde_range": [-3.0,3.0],
+      "kde_num": 101,
+      "RNN": 1,
+      "val_split": 0.1,
+      "model_dir": "models/" 
+  }
+}

@@ -1,4 +1,3 @@
-
 import sys
 import os
 import json
@@ -9,17 +8,19 @@ import scipy.io as sio
 import pdb
 from matplotlib import pyplot as plt
 
-def std_normal(N_data,t_steps, seeds):
+
+def std_normal(N_data, t_steps, seeds):
     # x0 and t_steps should be 1d array
     np.random.seed(seeds)
-    diff = t_steps[1:]-t_steps[:-1]
-    grow = np.zeros([N_data,t_steps.shape[0]])
-    noise = np.random.normal(0.0, np.sqrt(diff[0]), [t_steps.shape[0]-1, N_data])
-    for i in range(t_steps.shape[0]-1):
-        grow[:,i+1] = noise[i]
+    diff = t_steps[1:] - t_steps[:-1]
+    grow = np.zeros([N_data, t_steps.shape[0]])
+    noise = np.random.normal(0.0, np.sqrt(diff[0]), [t_steps.shape[0] - 1, N_data])
+    for i in range(t_steps.shape[0] - 1):
+        grow[:, i + 1] = noise[i]
     return grow
 
-def Gendata(T,Nt,N_data,IC_,seeds,mean=False,steady=False):
+
+def Gendata(T, Nt, N_data, IC_, seeds, mean=False, steady=False):
     #
     #
     # The Ornstein-Uhlenbeck process:
@@ -29,47 +30,51 @@ def Gendata(T,Nt,N_data,IC_,seeds,mean=False,steady=False):
     # Parameters:
     # Nt    : number of discretized t steps
     # N_data : number of data trajectories
-    # 
+    #
     th = 1.0
     mu = 1.2
     sig = 0.3
-    t = np.linspace(0,T,Nt+1)
+    t = np.linspace(0, T, Nt + 1)
     # initial condition - can be changed
-    if IC_=='uniform':
+    if IC_ == "uniform":
         np.random.seed(2)
-        xIC = np.random.uniform(0,2.5,N_data)
-    elif IC_=='value':
-        xIC = 1.5*np.ones(N_data)
+        xIC = np.random.uniform(0, 2.5, N_data)
+    elif IC_ == "value":
+        xIC = 1.5 * np.ones(N_data)
     else:
         xIC = IC_
     # data
-    data = np.zeros((1,Nt+1,N_data))
+    data = np.zeros((1, Nt + 1, N_data))
     brownian = std_normal(N_data, t, seeds)
-    Ext = np.exp(-th*t)
-    data[0,:,:] = (xIC[:,None]*Ext+mu*(1-Ext)+\
-                   sig*Ext*np.cumsum(np.exp(th*t)*brownian, axis=-1)).T
+    Ext = np.exp(-th * t)
+    data[0, :, :] = (
+        xIC[:, None] * Ext
+        + mu * (1 - Ext)
+        + sig * Ext * np.cumsum(np.exp(th * t) * brownian, axis=-1)
+    ).T
     if steady:
         Nt = 1
-        data = data[:,[0,-1],:]
+        data = data[:, [0, -1], :]
         data[0][1] -= np.mean(data[0][1])
         # data = np.tile(data,(10,1,1))
     if mean:
-        data = (np.mean(data,axis=2)).reshape([1,Nt+1])
-    if N_data==1:
-        data = data.reshape([1,Nt+1])
+        data = (np.mean(data, axis=2)).reshape([1, Nt + 1])
+    if N_data == 1:
+        data = data.reshape([1, Nt + 1])
     return data
 
-if __name__ == '__main__':
 
-    json_dir = 'jsons/Ex3OU.json'
+if __name__ == "__main__":
+
+    json_dir = "jsons/Ex3OU.json"
     with open(json_dir) as json_data_file:
         config = json.load(json_data_file)
-    
+
     config = munch.munchify(config)
     DC = config.data_config
-    
+
     locals().update(DC)
-    
+
     # generate training data
     # for i in range(2):
     #     data_train = np.zeros((N_train[i],n_sample[i],L_train+1))
@@ -81,25 +86,32 @@ if __name__ == '__main__':
     #         data_train[j] = Gendata(T=L_train*dt, Nt=L_train, N_data=n_sample[i],
     #                                 IC_=IC, seeds=j ,steady=False)[0].T
     #     np.save('data/'+eqn_name+'/train_{}.npy'.format(i+1),data_train)
-        
+
     # generate training data
-    data_ori = Gendata(T=L_train*dt, Nt=L_train, N_data=N_traj,
-                                IC_='uniform', seeds=114514 ,steady=False)[0].T
-    
-    
-    data_re = np.reshape(data_ori[:,:-1], (N_traj*L_train,))
+    data_ori = Gendata(
+        T=L_train * dt,
+        Nt=L_train,
+        N_data=N_traj,
+        IC_="uniform",
+        seeds=114514,
+        steady=False,
+    )[0].T
+
+    data_re = np.reshape(data_ori[:, :-1], (N_traj * L_train,))
     data_sort_ind = np.argsort(data_re)
-    re_indices = np.unravel_index(data_sort_ind, (N_traj,L_train))
+    re_indices = np.unravel_index(data_sort_ind, (N_traj, L_train))
     data_sort_0 = data_ori[re_indices]
-    data_sort_1 = data_ori[(re_indices[0],re_indices[1]+1)]
-    data_sort = np.concatenate((data_sort_0[:, np.newaxis], data_sort_1[:, np.newaxis]),axis = -1)
-    
-    plt.hist(data_sort_0, histtype = 'step')
-    plt.title(eqn_name+' raw data histogram')
-    plt.savefig('data/'+eqn_name+'/raw data.jpg')
+    data_sort_1 = data_ori[(re_indices[0], re_indices[1] + 1)]
+    data_sort = np.concatenate(
+        (data_sort_0[:, np.newaxis], data_sort_1[:, np.newaxis]), axis=-1
+    )
+
+    plt.hist(data_sort_0, histtype="step")
+    plt.title(eqn_name + " raw data histogram")
+    plt.savefig("data/" + eqn_name + "/raw data.jpg")
     plt.show()
-    plt.close('all')
-    
+    plt.close("all")
+
     # beta
     # for i in range(2):
     #     data_train = np.zeros((N_train[i],n_sample[i],2))
@@ -123,11 +135,11 @@ if __name__ == '__main__':
     #     plt.show()
     #     plt.close('all')
     #     np.save('data/'+eqn_name+'/beta_train_{}.npy'.format(i+1),data_train)
-    
+
     # uniform
     # for i in range(2):
     #     data_train = np.zeros((N_train[i],n_sample[i],2))
-        
+
     #     for j in range(N_train[i]):
     #         IC_int = np.random.randint(0,N_traj*L_train,(n_sample[i],))
     #         data_train[j] = data_sort[IC_int]
@@ -138,24 +150,24 @@ if __name__ == '__main__':
     #     plt.show()
     #     plt.close('all')
     #     np.save('data/'+eqn_name+'/uni_train_{}.npy'.format(i+1),data_train)
-    
+
     # range
     for i in range(2):
-        data_train = np.zeros((N_train[i],n_sample[i],1,2))
+        data_train = np.zeros((N_train[i], n_sample[i], 1, 2))
 
-        beta_left = np.random.randint(0,N_traj*L_train-n_sample[i],(N_train[i]))
-        
+        beta_left = np.random.randint(0, N_traj * L_train - n_sample[i], (N_train[i]))
+
         beta_right = beta_left + n_sample[i]
 
         for j in range(N_train[i]):
-            data_train[j,:,0] = data_sort[beta_left[j]:beta_right[j]]
-            if j <20:
-                plt.hist(data_train[j,:,0,0], histtype = 'step')
-        plt.title(eqn_name+'range {} histogram'.format(n_sample[i]))
-        plt.savefig('data/'+eqn_name+'/range_train_{}.jpg'.format(i+1))
+            data_train[j, :, 0] = data_sort[beta_left[j] : beta_right[j]]
+            if j < 20:
+                plt.hist(data_train[j, :, 0, 0], histtype="step")
+        plt.title(eqn_name + "range {} histogram".format(n_sample[i]))
+        plt.savefig("data/" + eqn_name + "/range_train_{}.jpg".format(i + 1))
         plt.show()
-        plt.close('all')
-        np.save('data/'+eqn_name+'/range_train_{}.npy'.format(i+1),data_train)
+        plt.close("all")
+        np.save("data/" + eqn_name + "/range_train_{}.npy".format(i + 1), data_train)
 
     # generate validation data
     # for i in range(2):
@@ -168,11 +180,17 @@ if __name__ == '__main__':
     #         data_val[j]  = Gendata(T=L_train*dt, Nt=L_train, N_data=n_sample[i],
     #                                IC_=IC, seeds=14514+j,mean=False,steady=False)[0].T
     #     np.save('data/'+eqn_name+'/val_{}.npy'.format(i+1),data_val)
-    
-    # generate test data
-    data_test = np.zeros((N_test,n_sample[1],1,L_test+1))
-    for j in range(N_test):
-        data_test[j,:,0]  = Gendata(T=L_test*dt, Nt=L_test, N_data=n_sample[1],
-                                IC_='value', seeds=114514+j, mean=False,steady=False)[0].T
-    np.save('data/'+eqn_name+'/test.npy',data_test)
 
+    # generate test data
+    data_test = np.zeros((N_test, n_sample[1], 1, L_test + 1))
+    for j in range(N_test):
+        data_test[j, :, 0] = Gendata(
+            T=L_test * dt,
+            Nt=L_test,
+            N_data=n_sample[1],
+            IC_="value",
+            seeds=114514 + j,
+            mean=False,
+            steady=False,
+        )[0].T
+    np.save("data/" + eqn_name + "/test.npy", data_test)
