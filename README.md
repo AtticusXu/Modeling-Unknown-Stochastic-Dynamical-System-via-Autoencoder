@@ -1,7 +1,11 @@
 # Modeling Unknown Stochastic Dynamical System via Autoencoder
 
-This project contains the code for the paper "Modeling Unknown Stochastic Dynamical System via Autoencoder" by Zhongshu Xu.
+This project contains the code for the paper "Modeling Unknown Stochastic Dynamical System via Autoencoder" by Zhongshu Xu, Yuan Chen, Qifan Chen, and Dongbin Xiu. The paper is available as a preprint on arXiv: [arXiv:2312.10001](https://arxiv.org/abs/2312.10001).
 
+If you use this code in your research, please cite our paper:
+```
+Xu, Z., Chen, Y., Chen, Q., & Xiu, D. (2023). Modeling unknown stochastic dynamical system via autoencoder. arXiv preprint arXiv:2312.10001.
+```
 ## Installation
 
 This project uses Poetry for dependency management. To set up the project, follow these steps:
