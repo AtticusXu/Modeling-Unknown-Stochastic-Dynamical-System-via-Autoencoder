@@ -40,9 +40,25 @@ To generate data for the stochastic dynamical systems, use the `data_generate.py
    python data_generation/data_generate.py --example 4-1-2
    ```
 
-Available examples are: 4-1-1, 4-1-2, 4-2-1, 4-2-2, 4-2-3, 4-3-1, 4-3-2, 4-4-1, and 4-4-2.
-
 The generated data will be saved in the `data` folder, organized by example name.
+
+## Available Examples
+
+The following table lists the available examples and their corresponding names:
+
+| Example | Name |
+|---------|------|
+| 4-1-1   | OU Process |
+| 4-1-2   | Double Well |
+| 4-2-1   | Cubic Drift |
+| 4-2-2   | Nonlinear Drift |
+| 4-2-3   | Nonlinear Diffusion |
+| 4-3-1   | Lorenz System |
+| 4-3-2   | Duffing Oscillator |
+| 4-4-1   | Multidimensional OU Process |
+| 4-4-2   | Multidimensional OU Process with Rank Deficiency |
+
+
 
 ## Project Structure
 
