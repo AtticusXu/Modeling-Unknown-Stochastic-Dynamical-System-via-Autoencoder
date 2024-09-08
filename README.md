@@ -10,7 +10,7 @@ This project uses Poetry for dependency management. To set up the project, follo
 
 2. Clone this repository:
    ```
-   git clone https://github.com/your-username/Modeling-Unknown-Stochastic-Dynamical-System-via-Autoencoder.git
+   git clone https://github.com/AtticusXu/Modeling-Unknown-Stochastic-Dynamical-System-via-Autoencoder.git
    cd Modeling-Unknown-Stochastic-Dynamical-System-via-Autoencoder
    ```
 
