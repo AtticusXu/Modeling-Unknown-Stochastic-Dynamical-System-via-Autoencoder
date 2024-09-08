@@ -49,14 +49,14 @@ The following table lists the available examples and their corresponding names:
 | Example | Name |
 |---------|------|
 | 4-1-1   | OU Process |
-| 4-1-2   | Double Well |
-| 4-2-1   | Cubic Drift |
-| 4-2-2   | Nonlinear Drift |
-| 4-2-3   | Nonlinear Diffusion |
-| 4-3-1   | Lorenz System |
-| 4-3-2   | Duffing Oscillator |
-| 4-4-1   | Multidimensional OU Process |
-| 4-4-2   | Multidimensional OU Process with Rank Deficiency |
+| 4-1-2   | Geometric Brownian Motion |
+| 4-2-1   | SDE with nonlinear diffusion |
+| 4-2-2   | Trig process |
+| 4-2-3   | Double Well Potential |
+| 4-3-1   | Noises with Exponential Distribution |
+| 4-3-2   | Noise with Lognormal Distribution |
+| 4-4-1   | Two-dimensional Ornstein-Uhlenbeck process |
+| 4-4-2   | Five-dimensional Ornstein-Uhlenbeck process |
 
 
 
