@@ -1,1 +1,4 @@
 data/
+WindowsPowerShell/
+poetry.lock
+__pycache__/

@@ -3,7 +3,7 @@
         "_comment": "OU Process",
         "eqn_name": "4-1-1",
         "N_traj": 10000,
-        "data_type": "uni",
+        "data_type": "range",
         "n_sample": [1000,10000],
         "N_train": [10000,1000],
         "N_test": 50,

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "modeling-unknown-stochastic-dynamical-system-via-autoencoder"
+name = "DEAE4SDE"
 version = "0.1.0"
 description = "Code for the paper Modeling Unknown Stochastic Dynamical System via Autoencoder"
 authors = ["Zhongshu Xu"]
@@ -11,13 +11,13 @@ munch = "^4.0.0"
 numpy = "^1.26.4"
 scipy = "^1.14.1"
 tensorflow-io-gcs-filesystem = "0.27.0"
-tensorflow = "^2.10.0"
+tensorflow = "2.10.0"
 matplotlib = "^3.9.2"
 scikit-learn = "^1.5.1"
 pydantic = "^2.9.0"
-argparse = "^1.4.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+package-mode = false
