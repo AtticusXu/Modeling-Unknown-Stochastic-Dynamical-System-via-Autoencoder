@@ -25,18 +25,13 @@
       "beta_kde_nd": [1.0,1.0],
       "beta_moment": [0.005,0.005],
       "beta_cov": [0.01,0.01],
-      "beta_mmd": [0.0,0.0],
-      "mmd_sigma": 0.1,
-      "mmd_basis": 256,
       "encoder_dim": 20,
       "decoder_dim": 20,
       "latent_dim": 5,
       "n_x": 5,
       "batch_size": 20,
-      "kde_method": "combine",
       "kde_range": [-3.0,3.0],
       "kde_num": 100,
-      "RNN": 1,
       "val_split": 0.1,
       "model_dir": "models/" 
   }

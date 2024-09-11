@@ -20,23 +20,18 @@
       "lr": [1e-3,1e-4],
       "max_moment": 6,
       "moment_weights": [1.0,1.0,2.0,3.0,8.0,15.0],
-      "beta_kde_1d": [0.01,0.01],
+      "beta_kde_1d": [1.0,1.0],
       "beta_kde_nd": [0.0,0.0],
-      "beta_moment": [0.0001,0.0001],
+      "beta_moment": [0.01,0.01],
       "beta_cov": [0.0,0.0],
-      "beta_mmd": [0.0,0.0],
-      "mmd_sigma": 0.01,
-      "mmd_basis": 64,
       "encoder_dim": 20,
       "decoder_dim": 20,
       "latent_dim": 1,
       "n_x": 1,
       "batch_size": 20,
-      "kde_method": "grid",
       "kde_range": [-3.0,3.0],
       "kde_num": 101,
-      "RNN": 1,
       "val_split": 0.1,
-      "model_dir": "models_enres/" 
+      "model_dir": "models/" 
   }
 }

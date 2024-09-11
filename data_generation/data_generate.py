@@ -167,7 +167,7 @@ class SDE1DGenerator:
                 data_train[j, :, 0] = data_sort[beta_left[j] : beta_right[j]]
 
             os.makedirs(f"data/{self.eqn_name}", exist_ok=True)
-            np.save(f"data/{DC.eqn_name}/range_train_{i + 1}.npy", data_train)
+            np.save(f"data/{DC.eqn_name}/train_{i + 1}.npy", data_train)
 
     def generate_test_data(self) -> None:
         DC = self.config
@@ -320,7 +320,7 @@ class OUProcessMultiDGenerator:
             # Ensure the data directory exists before saving
             os.makedirs(f"data/{self.eqn_name}", exist_ok=True)
             np.save(
-                f"data/{self.eqn_name}/neighbor_space_train_{i + 1}.npy",
+                f"data/{self.eqn_name}/train_{i + 1}.npy",
                 data_sort,
             )
 

@@ -2,3 +2,4 @@ data/
 WindowsPowerShell/
 poetry.lock
 __pycache__/
+models/
