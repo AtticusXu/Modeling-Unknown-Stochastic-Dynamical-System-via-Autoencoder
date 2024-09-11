@@ -103,9 +103,11 @@ You can monitor the training progress through the console output. The script wil
 
 ## Project Structure
 
-- `data_generation/`: Contains scripts for generating data
+
 - `configs/`: Configuration files for different examples
 - `data/`: Generated data (will be created when running the data generation script)
+- `models/`: Trained models and associated files
+- `data_generate.py`: Scripts for generating data
 - `DEAE_lib.py`: Library for DEAE model
 - `DEAE_network.py`: Network architecture for DEAE model
 - `DEAE_train.py`: Training script for DEAE model
