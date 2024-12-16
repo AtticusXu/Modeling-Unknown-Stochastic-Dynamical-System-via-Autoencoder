@@ -4,7 +4,7 @@ This project contains the code for the paper "Modeling Unknown Stochastic Dynami
 
 If you use this code in your research, please cite our paper:
 ```
-Xu, Z., Chen, Y., Chen, Q., & Xiu, D. (2023). Modeling unknown stochastic dynamical system via autoencoder. arXiv preprint arXiv:2312.10001.
+Xu, Z., Chen, Y., Chen, Q., & Xiu, D. (2024). Modeling unknown stochastic dynamical system via autoencoder. Journal of Machine Learning for Modeling and Computing, 5(3).
 ```
 ## Installation
 
